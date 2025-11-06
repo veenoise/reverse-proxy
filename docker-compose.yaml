@@ -21,7 +21,10 @@ services:
       - app_network
     volumes:
       - ./nginx:/etc/nginx
-      
+    depends_on:
+      - flask_app_1
+      - flask_app_2
+
 networks:
   app_network:
     driver: bridge
