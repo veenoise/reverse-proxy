@@ -1,0 +1,27 @@
+services:
+  flask_app_1:
+    build: .
+    expose:
+      - "8080"
+    networks:
+      - app_network
+  
+  flask_app_2:
+    build: .
+    expose:
+      - "8080"
+    networks:
+      - app_network
+
+  nginx:
+    image: nginx:1.29.3-alpine
+    ports:
+      - "80:80"
+    networks:
+      - app_network
+    volumes:
+      - ./nginx:/etc/nginx
+      
+networks:
+  app_network:
+    driver: bridge
